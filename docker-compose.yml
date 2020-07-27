@@ -1,0 +1,32 @@
+version: "2.4"
+services:
+  dnsmasq:
+    image: anzevalher/dnsmasq:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    volumes:
+      - "$DNSMASQ_CONFIG_FILE:/etc/dnsmasq.conf"
+      - "$DNSMASQ_CONFIG_DIR:/etc/dnsmasq.d/"
+    networks:
+      - dns
+    cap_add:
+      - NET_ADMIN
+    restart: always
+  stubby:
+    image: iurimieras/stubby_armv7:latest
+    expose:
+      - "5353/udp"
+    networks:
+      dns:
+        ipv4_address: 172.16.238.10
+    restart: always
+
+networks:
+  dns:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+          gateway: 172.16.238.1

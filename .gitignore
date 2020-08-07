@@ -1,3 +1,8 @@
 .env
-config/dnsmasq.d/*
+
+config/**/*
+!config/pi-hole/
+!config/dnsmasq.d/
+
+!config/pi-hole/.gitkeep
 !config/dnsmasq.d/.gitkeep

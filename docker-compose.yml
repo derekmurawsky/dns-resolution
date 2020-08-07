@@ -14,6 +14,7 @@ services:
       TZ: $PIHOLE_TIMEZONE
       WEBPASSWORD: $PIHOLE_WEBPASSWORD
       ServerIP: $PIHOLE_SERVERIP
+      VIRTUAL_HOST: $PIHOLE_VIRTUAL_HOST
       DNS1: "172.16.238.10#5353"
       DNS2: "172.16.238.10#5353"
     # Volumes store your data between container upgrades
